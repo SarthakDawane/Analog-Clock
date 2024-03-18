@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana;
+    color: var(--digit-color);
+    transition: all 0.7s ease;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+:root {
+    --digit-color: #000;
+    --bg-img: url(Assets/Light.jpg);
+    --clock-shadow: rgba(0, 55, 55, 0.9);
+    --hand-color: linear-gradient(to top, #290404, #000);
+}
+
+.dark-mode {
+    --digit-color: #fff;
+    --bg-img: url(Assets/Dark.jpg);
+    --clock-shadow: rgba(255, 200, 200, 0.9);
+    --hand-color: linear-gradient(to top, rgb(234, 234, 211), rgb(255, 255, 255));
+}
+
+#main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(16, 65, 65, 0.9);
+}
+
+.container {
+    position: relative;
+}
+
+.clock {
+    width: 600px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-image: var(--bg-img);
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 30px var(--clock-shadow);
+}
+
+.clock::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--hand-color);
+    z-index: 2;
+}
+
+.clock span {
+    position: absolute;
+    transform: rotate(calc(30deg * var(--i)));
+    inset: 12px;
+    text-align: center;
+}
+
+.clock span b {
+    font-size: 20px;
+    transform: rotate(calc(-30deg * var(--i)));
+    display: inline-block;
+}
+
+.clock .hand {
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.clock .hand i {
+    border-radius: 8px;
+    position: absolute;
+    width: var(--wit);
+    height: var(--long);
+    background: linear-gradient(to top, rgb(110, 110, 12), rgb(237, 237, 9));
+    background: var(--hand-color);
+}
+
+.clock .hand i::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width:600px) {
+    .clock {
+        height: 300px;
+        width: 300px;
+    }
+    .clock .hour i {
+        height: 50px;
+        width: 8px;
+    }
+    .clock .sec i,
+    .clock .min i {
+        height: 100px;
+    }
+    .clock .sec i {
+        width: 1px;
+    }
+    .clock .min i {
+        width: 5px;
+    }
+}
